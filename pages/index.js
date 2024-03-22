@@ -318,19 +318,21 @@ const Index = () => {
                     EDUCATION
                   </div>
                   {
-                    usrData.user?.education?.map((edu, index) => (
-                      <div key={index}
-                        className="history-item"
-                      >
-                        <div className="date">{new Date(edu.startDate).getFullYear()} - {new Date(edu.endDate).getFullYear()}</div>
-                        <div className="name">{edu.degree}</div>
-                        <div className="subname">{edu.institution}</div>
-                        <div className="text">
-                          <p>
-                            {edu.description}
-                          </p>
+                    usrData.user?.timeline?.map((tline, index) => (
+                      tline.forEducation ?
+                        <div key={index}
+                          className="history-item"
+                        >
+                          <div className="date">{new Date(tline.startDate).getFullYear()} - {new Date(tline.endDate).getFullYear()}</div>
+                          <div className="name">{tline.company_name}</div>
+                          <div className="subname">{tline.jobTitle}</div>
+                          <div className="text">
+                            <p>
+                              {tline.summary}
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                        : <></>
                     ))
                   }
                 </div>
@@ -366,18 +368,19 @@ const Index = () => {
                   </div>
                   {
                     usrData.user?.timeline?.map((tline, index) => (
-                      <div key={index}
-                        className="history-item"
-                      >
-                        <div className="date">{new Date(tline.startDate).getFullYear()} - {new Date(tline.endDate).getFullYear()}</div>
-                        <div className="name">{tline.company_name}</div>
-                        <div className="subname">{tline.jobTitle}</div>
-                        <div className="text">
-                          <p>
-                            {tline.summary}
-                          </p>
-                        </div>
-                      </div>
+                      !tline.forEducation ?
+                        <div key={index}
+                          className="history-item"
+                        >
+                          <div className="date">{new Date(tline.startDate).getFullYear()} - {new Date(tline.endDate).getFullYear()}</div>
+                          <div className="name">{tline.company_name}</div>
+                          <div className="subname">{tline.jobTitle}</div>
+                          <div className="text">
+                            <p>
+                              {tline.summary}
+                            </p>
+                          </div>
+                        </div> : <></>
                     ))
                   }
                 </div>
