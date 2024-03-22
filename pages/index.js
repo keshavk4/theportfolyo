@@ -112,15 +112,13 @@ const Index = () => {
                   {usrData.user?.about.subTitle}
                 </p>
                 <div className="social-links">
-                  <a target="_blank" rel="noreferrer" href="#">
-                    <i aria-hidden="true" className="fab fa-twitter" />
-                  </a>
-                  <a target="_blank" rel="noreferrer" href="#">
-                    <i aria-hidden="true" className="fab fa-dribbble" />
-                  </a>
-                  <a target="_blank" rel="noreferrer" href="#">
-                    <i aria-hidden="true" className="fab fa-behance" />
-                  </a>
+                  {
+                    usrData.user?.social_handles?.map((social, index) => (
+                      <a key={index} target="_blank" rel="noreferrer" href={social.url}>
+                        <img aria-hidden="true" src={social.image.url} width={25} />
+                      </a>
+                    ))
+                  }
                 </div>
               </div>
             </div>
